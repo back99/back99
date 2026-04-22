@@ -41,6 +41,6 @@ I believe in writing clean, maintainable code, building systems that scale, and 
 ## Education
 
 - **Master’s in Computer Science (in progress)**  
-  *(Saint Louis University, USA, 2025–2027 expected)*
+  *(Saint Louis University, USA, 2025–2026 expected)*
 
 - **B.S. in Computer Engineering, Ajou University, South Korea**
