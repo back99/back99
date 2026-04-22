@@ -1,16 +1,20 @@
-# Hi, I'm Seung Bum Jung, a Backend Developer
+# Hi, I'm Seung Bum Jung
 
 ## About Me
 
-Hello! I’m Seung Bum Jung — a backend engineer with several years of experience. I’m currently pursuing a Master’s in Computer Science at Saint Louis University.
+Hello! I'm Seung Bum Jung — a backend engineer with several years of experience, currently pursuing a Master's in Computer Science at Saint Louis University.
 
-I specialize in designing scalable backend systems with a strong focus on system architecture, distributed infrastructure, and real-world service reliability.
+I specialize in designing scalable distributed systems, and I'm expanding into AI/ML engineering — particularly Federated Learning and distributed AI infrastructure. My goal is to bridge hands-on industry experience with applied AI research to build systems that work at scale in the real world.
 
-Before grad school, I worked as a backend developer where I contributed to building scalable media processing pipelines and improving performance in high-traffic environments.
+Before grad school, I worked as a backend developer building scalable media processing pipelines and high-performance distributed systems. At SLU, I'm conducting research on parallelizing Federated Learning and collaborating on distributed autonomous driving simulation with GIST.
 
-At SLU, I’m expanding my skills in advanced topics like cloud-native systems, microservices, and event-driven architecture. My goal is to combine hands-on industry experience with deep academic knowledge to become a backend architect capable of solving complex engineering problems at scale.
+## Research
 
-I believe in writing clean, maintainable code, building systems that scale, and collaborating with people who care about clean systems and great products.
+### ✅ Parallelizing Federated Learning Client Simulation [📄 Read More](https://github.com/back99/fl-simulation)
+- Parallelized FL client training using Python `ProcessPoolExecutor`, achieving up to **1.49x speedup** over serial baseline
+- Solved PyTorch tensor pickling deadlock via NumPy serialization for inter-process communication
+- Implemented Non-IID data partitioning and FedAvg aggregation on MNIST across 10–50 clients
+  **Stack:** Python, PyTorch, NumPy, multiprocessing
 
 ## Experience
 
