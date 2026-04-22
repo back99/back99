@@ -13,7 +13,7 @@ Before grad school, I worked as a backend developer building scalable media proc
 ### ✅ Parallelizing Federated Learning Client Simulation [📄 Read More](https://github.com/back99/fl-simulation)
 - Parallelized FL client training using Python `ProcessPoolExecutor`, achieving up to **1.49x speedup** over serial baseline
 - Solved PyTorch tensor pickling deadlock via NumPy serialization for inter-process communication
-- Implemented Non-IID data partitioning and FedAvg aggregation on MNIST across 10–50 clients
+- Implemented Non-IID data partitioning and FedAvg aggregation on MNIST across 10–50 clients.  
   **Stack:** Python, PyTorch, NumPy, multiprocessing
 
 ## Experience
