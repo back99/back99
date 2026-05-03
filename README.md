@@ -16,6 +16,13 @@ Before grad school, I worked as a backend developer building scalable media proc
 - Implemented Non-IID data partitioning and FedAvg aggregation on MNIST across 10–50 clients.  
   **Stack:** Python, PyTorch, NumPy, multiprocessing
 
+### ✅ Dental Aligner ML Force Prediction [📄 Read More](https://github.com/back99/dental-ml-force-prediction)
+- Predicted orthodontic forces (Fx, Fy, Fz, Tx, Ty, Tz) at unseen aligner thicknesses (0.75mm, 1.0mm, 1.25mm) using real 0.25mm and 0.5mm experimental data
+- Identified XGBoost's extrapolation limitation (flat-line predictions beyond training range) and switched to Gaussian Process Regression (GPR)
+- Generated simulated 0.75mm data using a weighted delta method (w = 0.5~1.5) to augment training data for GPR
+- Trained GPR with Matern kernel (ν=1.5) via GPyTorch on NVIDIA L40S (48GB VRAM) — Libra HPC  
+  **Stack:** Python, GPyTorch, XGBoost, scikit-learn, pandas, matplotlib, SLURM
+
 ## Experience
 
 ### ✅ Distributed Transcoding [📄 Read More](Distributed_transcoding)
