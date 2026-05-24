@@ -20,6 +20,7 @@ Before grad school, I worked as a backend developer building scalable media proc
 - Predicted orthodontic forces (Fx, Fy, Fz, Tx, Ty, Tz) at unseen aligner thicknesses (0.75/1.0/1.25mm) on **U6/U7 molars**, using real 0.25mm and 0.5mm DPA experimental data (Smith dataset)
 - Identified XGBoost's extrapolation limitation (flat-line predictions beyond training range) and switched to **Gaussian Process Regression (GPR)** with Matern kernel (ν=1.5) for principled uncertainty estimates (μ ± 2σ)
 - Generated simulated 0.75mm data via a **weighted delta method** (w = 0.5~1.5) to augment GPR training — enabled the model to distinguish 1.0mm vs 1.25mm predictions, which collapsed to flat lines on real-data-only training
+- Applied **LSTM** with **Leave-One-Out Cross-Validation (5 folds)** to predict patient cohort force/moment time-series (0h–336h) — trained on 4 cohorts, predicted the held-out cohort, repeated across all 5 folds
 - Trained on **NVIDIA L40S (48GB VRAM)** GPUs via GPyTorch, scheduled with **SLURM** on the Libra HPC cluster  
   **Stack:** Python, PyTorch, GPyTorch, XGBoost, scikit-learn, pandas, numpy, matplotlib, seaborn, SLURM
 
