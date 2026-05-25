@@ -2,57 +2,56 @@
 
 ## About Me
 
-Hello! I'm Seung Bum Jung — a backend engineer with several years of experience, currently pursuing a Master's in Computer Science at Saint Louis University.
+Hello! I'm Seung Bum Jung — a software engineer currently pursuing a Master's in Computer Science at Saint Louis University.
 
-I specialize in designing scalable distributed systems, and I'm expanding into AI/ML engineering — particularly Federated Learning and distributed AI infrastructure. My goal is to bridge hands-on industry experience with applied AI research to build systems that work at scale in the real world.
+My work pattern is consistent: identify the real bottleneck in a legacy system, then redesign it — not just optimize around it. Concrete examples include a 50% encoding cost reduction (Hybrik → AWS EKS), a 30% token-issuance latency reduction (synchronous RDB → Lambda + Redis + SNS), and a 6× faster video-conference room initialization.
 
-Before grad school, I worked as a backend developer building scalable media processing pipelines and high-performance distributed systems. At SLU, I'm conducting research on parallelizing Federated Learning and collaborating on distributed autonomous driving simulation with GIST.
+I'm expanding that production-engineering depth into AI/ML infrastructure — Federated Learning at HPC scale, Bayesian models on GPUs, and (from Summer 2026) a retrieval-augmented LLM project for medical conversational AI. The goal is to bridge industry-scale system design with applied ML research.
 
 ## Research
 
 ### ✅ Parallelizing Federated Learning Client Simulation [📄 Read More](https://github.com/back99/fl-simulation)
-- Parallelized FL client training using Python `ProcessPoolExecutor`, achieving up to **1.27x speedup** over serial baseline
-- Solved PyTorch tensor pickling deadlock via NumPy serialization for inter-process communication
-- Implemented Non-IID data partitioning and FedAvg aggregation on MNIST across 10–50 clients.  
-  **Stack:** Python, PyTorch, NumPy, multiprocessing
+- **Identified** the single-process bottleneck capping FL research throughput; **prototyped** Python `ProcessPoolExecutor` parallelization and **diagnosed** a PyTorch tensor-pickling deadlock at the IPC boundary, **resolving** it via NumPy serialization
+- **Measured ~1.27× stable speedup** across 50–200 Non-IID MNIST clients on an 8-core CPU; **proved** an Amdahl ceiling (~24% parallel fraction), pointing the next iteration to multi-node FL rather than further single-machine tuning
+- Future work (Summer 2026 →): scale FL to multi-node SLU Libra HPC, introduce Asynchronous FedAvg, and adopt CIFAR-10 + ResNet-18 workloads  
+  **Stack:** Python, PyTorch, NumPy, multiprocessing, MNIST, FedAvg
 
 ### ✅ Dental Aligner ML Force Prediction [📄 Read More](https://github.com/back99/dental-ml-force-prediction)
-- Predicted orthodontic forces (Fx, Fy, Fz, Tx, Ty, Tz) at unseen aligner thicknesses (0.75/1.0/1.25mm) on **U6/U7 molars**, using real 0.25mm and 0.5mm DPA experimental data (Smith dataset)
-- Identified XGBoost's extrapolation limitation (flat-line predictions beyond training range) and switched to **Gaussian Process Regression (GPR)** with Matern kernel (ν=1.5) for principled uncertainty estimates (μ ± 2σ)
-- Generated simulated 0.75mm data via a **weighted delta method** (w = 0.5~1.5) to augment GPR training — enabled the model to distinguish 1.0mm vs 1.25mm predictions, which collapsed to flat lines on real-data-only training
-- Applied **LSTM** with **Leave-One-Out Cross-Validation (5 folds)** to predict patient cohort force/moment time-series (0h–336h) — trained on 4 cohorts, predicted the held-out cohort, repeated across all 5 folds
-- Trained on **NVIDIA L40S (48GB VRAM)** GPUs via GPyTorch, scheduled with **SLURM** on the Libra HPC cluster  
+- **Found** that XGBoost predictions collapsed to flat lines beyond the training range — useless for predicting orthodontic forces (Fx, Fy, Fz, Tx, Ty, Tz) at unseen aligner thicknesses (0.75/1.0/1.25mm) on U6/U7 molars
+- **Re-architected** with **Gaussian Process Regression** (Matern kernel, ν=1.5) for principled μ ± 2σ uncertainty so the "I don't know" regions are visible to clinicians
+- **Augmented** training with simulated 0.75mm data via a weighted delta method (w = 0.5~1.5), enabling the model to distinguish 1.0mm vs 1.25mm predictions that had previously collapsed to the same curve
+- Also explored **LSTM** with **Leave-One-Out Cross-Validation (5 folds)** to predict patient cohort force/moment time-series (0h–336h) on the same dataset
+- **Operationalized** on **NVIDIA L40S (48GB VRAM)** GPUs via GPyTorch, scheduled with **SLURM** on the SLU Libra HPC cluster  
   **Stack:** Python, PyTorch, GPyTorch, XGBoost, scikit-learn, pandas, numpy, matplotlib, seaborn, SLURM
+
+### 🟣 RAG-Based Conversational AI for MCI Patient Support — **Upcoming (Summer 2026 →)**
+- Joining as funded RA at SLU HPC Lab. Core design problem: how to keep an LLM's answers **grounded in a curated medical knowledge base** — not free-generated — under the safety bar required for **Mild Cognitive Impairment (MCI)** patient support
+- Planned approach: a retrieval-augmented generation (RAG) pipeline (vector retrieval + open-weight LLM) served on the same **SLURM / NVIDIA L40S** HPC workflow I already operate
+- Will design domain-appropriate evals (factuality vs. curated sources, refusal behavior on out-of-scope queries, retrieval recall@k) so improvements are measurable  
+  **Planned Stack:** Python, PyTorch, Hugging Face, vLLM, FAISS/Chroma, embedding models, SLURM, NVIDIA L40S
 
 ## Experience
 
-### ✅ Distributed Transcoding [📄 Read More](Distributed_transcoding)
-- Designed a scalable video transcoding system to replace Hybrik, reducing costs by 50% and improving throughput by 30%.
-- Deployed parallel transcoding pods on AWS EKS based on GOP-aware segmentation.
-- Used Redis for job queuing and failure recovery; modularized packaging and media services for maintainability.  
+### ✅ Distributed Encoding System on AWS EKS [📄 Read More](Distributed_transcoding)
+- **Found** the Hybrik-based pipeline cost-prohibitive and inelastic at scale
+- **Designed** a containerized encoding pipeline on AWS EKS with GOP-aware video partitioning and Redis-based job control with auto-failover, replacing the closed-source vendor stack
+- **Cut encoding cost by 50%** and **lifted throughput by 30%**  
   **Stack:** Kotlin, Spring Boot, AWS EKS, Redis, Docker, FFmpeg
 
-### ✅ Watermark Session Token Optimization [📄 Read More](Watermark_session_token_ver2)
-- Rebuilt token generation with Redis and AWS Lambda for low-latency issuance (↓30%).
-- Implemented a globally unique token strategy across Seoul, Oregon, and Frankfurt.
-- Integrated event-based regeneration via SNS and CloudWatch, enabling 5M+ token support.  
+### ✅ Watermark Token Issuance Optimization [📄 Read More](Watermark_session_token_ver2)
+- **Diagnosed** peak-time latency spikes and regional index collisions in the legacy synchronous-RDB token service
+- **Redesigned** the data path as a non-linear index generator on AWS Lambda + Redis with SNS-driven regeneration, removing the global lock and unifying regional indexing into a single WM_INDEX
+- **Delivered 30% peak-latency reduction** and provisioned **5M+ tokens** race-free across Seoul / Oregon / Frankfurt  
   **Stack:** Kotlin, Redis, AWS Lambda, CloudWatch, SNS
 
 ### ✅ Legacy API Refactoring & Kotlin Migration
-- Refactored legacy Java APIs to Kotlin with DDD structure and handler-resolver pattern.
-- Improved interface design, testability, and async communication via Kafka.
-- Boosted developer onboarding speed and deployment maintainability.  
+- **Identified** that base64-string transport and entangled Java handlers made the API both unsafe and untestable
+- **Led** a migration to modular Kotlin codebases under DDD boundaries with a structured handler–resolver protocol
+- **Decoupled** synchronous calls behind Kafka event streams; improved test coverage and deployment cadence while preserving wire compatibility  
   **Stack:** Kotlin, Spring Boot, Kafka, DDD
-
-### ✅ CMS System Optimization
-- Refactored Redis caching and pub/sub architecture for collaboration tools.
-- Reduced CMS latency and increased cache hit ratio by cleaning stale keys and streamlining logic.
-- Modularized chat, alarm, and account services for future scalability.  
-  **Stack:** Java, Redis, Spring Boot, Pub/Sub
 
 ## Education
 
-- **Master’s in Computer Science (in progress)**  
-  *(Saint Louis University, USA, 2025–2026 expected)*
-
-- **B.S. in Computer Engineering, Ajou University, South Korea**
+- **M.S. in Computer Science (in progress)** — Saint Louis University, USA, Aug 2025 – Dec 2026 (expected)  
+  Advisor: Prof. Ted Ahn · Lab: High Performance Computing Lab · GPA: 3.63 / 4.0
+- **B.S. in Computer Engineering** — Ajou University, South Korea, 2015–2018
