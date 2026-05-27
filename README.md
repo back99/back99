@@ -6,7 +6,7 @@ Hello! I'm Seung Bum Jung — a software engineer currently pursuing a Master's 
 
 My work pattern is consistent: identify the real bottleneck in a legacy system, then redesign it — not just optimize around it. Concrete examples include a 50% encoding cost reduction (Hybrik → AWS EKS), a 30% token-issuance latency reduction (synchronous RDB → Lambda + Redis + SNS), and a 6× faster video-conference room initialization.
 
-I'm expanding that production-engineering depth into AI/ML infrastructure — Federated Learning at HPC scale, Bayesian models on GPUs, and (from Summer 2026) a retrieval-augmented LLM project for medical conversational AI. The goal is to bridge industry-scale system design with applied ML research.
+I'm expanding that production-engineering depth into AI/ML systems — Federated Learning at HPC scale, Bayesian models on GPUs, and (from Summer 2026) a HIPAA-compliant clinical LLM chatbot for MCI patient support. The goal is to bridge industry-scale system design with applied ML in regulated, real-world settings.
 
 ## Research
 
@@ -24,11 +24,12 @@ I'm expanding that production-engineering depth into AI/ML infrastructure — Fe
 - **Operationalized** on **NVIDIA L40S (48GB VRAM)** GPUs via GPyTorch, scheduled with **SLURM** on the SLU Libra HPC cluster  
   **Stack:** Python, PyTorch, GPyTorch, XGBoost, scikit-learn, pandas, numpy, matplotlib, seaborn, SLURM
 
-### 🟣 RAG-Based Conversational AI for MCI Patient Support — **Upcoming (Summer 2026 →)**
-- Joining as funded RA at SLU HPC Lab. Core design problem: how to keep an LLM's answers **grounded in a curated medical knowledge base** — not free-generated — under the safety bar required for **Mild Cognitive Impairment (MCI)** patient support
-- Planned approach: a retrieval-augmented generation (RAG) pipeline (vector retrieval + open-weight LLM) served on the same **SLURM / NVIDIA L40S** HPC workflow I already operate
-- Will design domain-appropriate evals (factuality vs. curated sources, refusal behavior on out-of-scope queries, retrieval recall@k) so improvements are measurable  
-  **Planned Stack:** Python, PyTorch, Hugging Face, vLLM, FAISS/Chroma, embedding models, SLURM, NVIDIA L40S
+### 🟣 Clinical LLM Chatbot for MCI Patient Support — **Upcoming (Summer 2026 →)**
+- Funded RA project at SLU HPC Lab (advisor: Prof. Ted Ahn). Design and build an **iPad-based conversational AI** intervention for patients with **Mild Cognitive Impairment (MCI)**, deployed in a **HIPAA-compliant** clinical setting as a feasibility pilot supporting a future **NIH R01** application
+- End-to-end ownership: iPad kiosk frontend + institutional backend + LLM API integration (OpenAI / Claude). Initial release uses existing APIs with prompt engineering and safety guardrails rather than fine-tuning — prioritizing speed-to-clinic over model novelty
+- HIPAA + BAA + privacy-first data architecture: capture only de-identified engagement metadata (topics discussed, session duration, dates, participant ID) — **no raw audio or full conversation transcripts**
+- Pilot evaluation (~15 participants, 6 months): feasibility, iPad usability, engagement patterns from metadata, and preliminary effectiveness on depression, anxiety, insomnia, and cognitive function trends  
+  **Planned Stack:** Python, OpenAI / Claude APIs, prompt engineering, safety guardrails, iPad (frontend), institutional backend (HIPAA), BAA, de-identified metadata only
 
 ## Experience
 
