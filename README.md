@@ -17,11 +17,21 @@ I'm expanding that production-engineering depth into AI/ML systems — Federated
   **Stack:** Python, PyTorch, NumPy, multiprocessing, MNIST, FedAvg
 
 ### ✅ Dental Aligner ML Force Prediction [📄 Read More](https://github.com/back99/dental-ml-force-prediction)
+
+**Thickness extrapolation (GPR)**
 - **Found** that XGBoost predictions collapsed to flat lines beyond the training range — useless for predicting orthodontic forces (Fx, Fy, Fz, Tx, Ty, Tz) at unseen aligner thicknesses (0.75/1.0/1.25mm) on U6/U7 molars
 - **Re-architected** with **Gaussian Process Regression** (Matern kernel, ν=1.5) for principled μ ± 2σ uncertainty so the "I don't know" regions are visible to clinicians
 - **Augmented** training with simulated 0.75mm data via a weighted delta method (w = 0.5~1.5), enabling the model to distinguish 1.0mm vs 1.25mm predictions that had previously collapsed to the same curve
-- Also explored **LSTM** with **Leave-One-Out Cross-Validation (5 folds)** to predict patient cohort force/moment time-series (0h–336h) on the same dataset
-- **Operationalized** on **NVIDIA L40S (48GB VRAM)** GPUs via GPyTorch, scheduled with **SLURM** on the SLU Libra HPC cluster  
+
+**Patient-level temporal forecasting (LSTM LOO + Partial Observation)**
+- **Reframed** the clinical question — given early measurements of a *new* patient, can we forecast their later force/moment trajectory? — as **Leave-One-Out + Partial Observation Forecasting**
+- **Designed** a 60-experiment matrix (5 cohorts × 3 horizons × 4 tooth/thickness sheets): train on the other 4 cohorts plus the target cohort's first (11−k) time points, then predict the last k points (k ∈ {1, 2, 3}) corresponding to 14 days, 7+14 days, and 6+7+14 days horizons
+- **Built** the model as LSTM(128 hidden, 2 layers, dropout 0.2) → Dense(64) → scalar, trained per (sheet, force-axis, cohort, k) tuple with 300 epochs and StepLR scheduling
+- **Visualized** each prediction so clinicians can read uncertainty visually — full ground-truth series in gray, LSTM forecast as a dashed line extending from the last observed point, with hidden ground-truth marked as black triangles
+
+**Why GPR + LSTM together**: GPR handles *spatial* extrapolation across aligner thicknesses; LSTM handles *temporal* extrapolation across the 14-day treatment window. The two are complementary, not redundant.
+
+- **Operationalized** on **NVIDIA L40S (48GB VRAM)** GPUs via GPyTorch (GPR) and PyTorch (LSTM), scheduled with **SLURM** on the SLU Libra HPC cluster  
   **Stack:** Python, PyTorch, GPyTorch, XGBoost, scikit-learn, pandas, numpy, matplotlib, seaborn, SLURM
 
 ### 🟣 Clinical LLM Chatbot for MCI Patient Support — **Upcoming (Summer 2026 →)**
