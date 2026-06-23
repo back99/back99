@@ -88,7 +88,7 @@ Mid-level (SDE II / SWE II) roles in:
 
 ---
 
-## Experience — TmaxWAPL · Software Engineer · 2021.08 – 2022.09
+## Experience — Tmax · Software Engineer / Research Lab · 2021.08 – 2023.04 (1 yr 9 mo, across TmaxWAPL and TmaxOS Research Lab)
 
 ### ✅ Video Conference Room Initialization (6× faster)
 > **Traced** 100-user video conference room join latency to chat and account initialization being coupled on the join path, **decoupled** those dependencies and **introduced** async task queues to move initialization off the critical path, **reducing per-user setup from 0.6s to 0.1s — a 6× user-facing latency improvement**.
