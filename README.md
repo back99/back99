@@ -100,6 +100,11 @@ Mid-level (SDE II / SWE II) roles in:
 
 **Stack:** Java, Spring, Redis (Cache + Pub/Sub), MongoDB
 
+### ✅ Kafka-Based Room Lifecycle Event Server
+> **Built** a Kafka-based backend capturing ~80K session lifecycle events end-to-end with a schema designed to support both ad-hoc debugging and downstream metric pipelines, **to address** the lack of room-level observability blocking debugging, analytics, and metric-driven feature work, **unblocking** debugging, analytics, and metric-based feature extensions that were previously impossible.
+
+**Stack:** Java, Kafka, Spring, MongoDB
+
 ## Education
 
 - **M.S. in Computer Science (in progress)** — Saint Louis University, USA, Aug 2025 – Dec 2026 (expected)  
