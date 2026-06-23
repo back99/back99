@@ -1,12 +1,46 @@
 # Hi, I'm Seung Bum Jung
 
-## About Me
+## 🔧 The Problem I Solve
 
-Hello! I'm Seung Bum Jung — a software engineer currently pursuing a Master's in Computer Science at Saint Louis University.
+Most engineering teams hit a wall when **production reliability** and **HPC/research-grade infrastructure** need to coexist. Web-scale distributed systems engineers don't speak HPC. HPC researchers don't ship production AWS code. Healthcare AI teams need both, and almost no one has both.
 
-My work pattern is consistent: identify the real bottleneck in a legacy system, then redesign it — not just optimize around it. Concrete examples include a 50% encoding cost reduction (Hybrik → AWS EKS), a 30% token-issuance latency reduction (synchronous RDB → Lambda + Redis + SNS), and a 6× faster video-conference room initialization.
+## ⚠️ Why It Gets Worse
 
-I'm expanding that production-engineering depth into AI/ML systems — Federated Learning at HPC scale, Bayesian models on GPUs, and (from Summer 2026) a HIPAA-compliant clinical LLM chatbot for MCI patient support. The goal is to bridge industry-scale system design with applied ML in regulated, real-world settings.
+I've watched the same pattern repeat:
+- Legacy systems quietly cap throughput, but nobody redesigns the data path — they tune it
+- Research code lives on a laptop until it dies on the cluster
+- "We'll add compliance later" becomes "we shipped, now what?"
+
+The cost? 50% over-spending, 30% latency you can't fix with caching, and an LLM you can't actually ship into a regulated environment.
+
+## ✅ What I Bring
+
+I'm the engineer who lives in both worlds.
+
+**Production AWS at scale (4 years at Doverunner):**
+- Redesigned a synchronous-RDB watermark token system into a **Lambda + Redis + SNS** architecture → **5M+ race-free tokens** across Seoul, Oregon, Frankfurt with **30% peak-latency reduction**
+- Replaced a Hybrik-based encoding SaaS with a self-hosted **AWS EKS** pipeline → **50% cost cut, 30% throughput lift**
+- Reduced 100-user video conference room initialization from 0.6s to 0.1s — a **6× user-facing latency improvement** at TmaxWAPL
+
+**HPC + ML research at SLU HPC Lab (M.S. CS, Dec 2026):**
+- Federated Learning parallelization on SLURM + NVIDIA L40S with empirical Amdahl analysis
+- Gaussian Process Regression + LSTM pipeline for clinical force prediction with uncertainty estimation
+- Joining CARLA distributed simulation project, SC2026 workshop submission
+
+**Applied LLM (Summer 2026 →):**
+- Funded RA on a HIPAA-compliant clinical LLM chatbot for MCI patient support — iPad frontend, institutional backend, BAA-grounded data architecture
+
+## 📩 What I'm Looking For
+
+Mid-level (SDE II / SWE II) roles in:
+- ☁️ Cloud / Distributed Systems Infrastructure (AWS, Datadog, Mastercard, Cloudflare)
+- 🤖 ML / AI Platform Engineering (CoreWeave, Anyscale, Modal Labs)
+- 🎬 Video / Streaming Infrastructure (AWS Elemental, Akamai, Twitch, Bitmovin)
+- 🏥 Healthcare AI (Cigna-Evernorth, Lumeris, Tempus, Hippocratic AI)
+
+📍 St. Louis, MO · Open to relocation (Seattle, Bay Area, NYC, Portland, Boston, Pittsburgh) · F-1 OPT + 3-year STEM extension eligible · Available **January 2027**
+
+→ DM open. Reach me via [LinkedIn](https://www.linkedin.com/in/seungbum-jung-6a105317a/) or email tofoth@gmail.com.
 
 ## Research
 
@@ -30,25 +64,41 @@ I'm expanding that production-engineering depth into AI/ML systems — Federated
 - Pilot evaluation (~15 participants, 6 months): feasibility, iPad usability, engagement patterns from metadata, and preliminary effectiveness on depression, anxiety, insomnia, and cognitive function trends  
   **Planned Stack:** Python, OpenAI / Claude APIs, prompt engineering, safety guardrails, iPad (frontend), institutional backend (HIPAA), BAA, de-identified metadata only
 
-## Experience
-
-### ✅ Distributed Encoding System on AWS EKS [📄 Read More](Distributed_transcoding)
-- **Found** the Hybrik-based pipeline cost-prohibitive and inelastic at scale
-- **Designed** a containerized encoding pipeline on AWS EKS with GOP-aware video partitioning and Redis-based job control with auto-failover, replacing the closed-source vendor stack
-- **Cut encoding cost by 50%** and **lifted throughput by 30%**  
-  **Stack:** Kotlin, Spring Boot, AWS EKS, Redis, Docker, FFmpeg
+## Experience — Doverunner (formerly Inka Entworks) · Software Engineer · 2023.04 – 2025.09
 
 ### ✅ Watermark Token Issuance Optimization [📄 Read More](Watermark_session_token_ver2)
-- **Diagnosed** peak-time latency spikes and regional index collisions in the legacy synchronous-RDB token service
-- **Redesigned** the data path as a non-linear index generator on AWS Lambda + Redis with SNS-driven regeneration, removing the global lock and unifying regional indexing into a single WM_INDEX
-- **Delivered 30% peak-latency reduction** and provisioned **5M+ tokens** race-free across Seoul / Oregon / Frankfurt  
-  **Stack:** Kotlin, Redis, AWS Lambda, CloudWatch, SNS
+> **Redesigned** the legacy synchronous-RDB token service into a non-linear-index Lambda + Redis + SNS event-driven architecture, **to fix** peak-time latency spikes and regional index collisions blocking scale-out, **delivering 30% peak-latency reduction and 5M+ race-free tokens** across Seoul, Oregon, and Frankfurt.
+
+**Stack:** Kotlin, AWS Lambda, Redis, SNS, CloudWatch, RDS
+
+### ✅ Distributed Encoding System on AWS EKS [📄 Read More](Distributed_transcoding)
+> **Designed and built** a containerized encoding pipeline on AWS EKS with GOP-aware video partitioning and Redis-based job control with auto-failover, **to replace** a Hybrik-based external SaaS that was cost-prohibitive and inelastic at scale, **cutting encoding cost 50% and lifting throughput 30%**.
+
+**Stack:** Kotlin, Spring Boot, AWS EKS, Docker, Redis, FFmpeg, AWS Artifact
 
 ### ✅ Legacy API Refactoring & Kotlin Migration
-- **Identified** that base64-string transport and entangled Java handlers made the API both unsafe and untestable
-- **Led** a migration to modular Kotlin codebases under DDD boundaries with a structured handler–resolver protocol
-- **Decoupled** synchronous calls behind Kafka event streams; improved test coverage and deployment cadence while preserving wire compatibility  
-  **Stack:** Kotlin, Spring Boot, Kafka, DDD
+> **Led migration** of entangled base64-Java handlers into modular Kotlin codebases under DDD boundaries with Kafka-based event streaming, **to unblock** API safety and testability blocks preventing onboarding and deploys, **improving** test coverage, deployment cadence, and team onboarding by isolating reusable domain logic.
+
+**Stack:** Kotlin, Spring Boot, Kafka, DDD
+
+### ✅ Transcoding & Packaging Module Enhancement
+> **Modularized** the encoding pipeline into media-info / error-handling / packaging submodules and added multi-aspect (16:9, 1:1, 9:16) + HD/FHD/UHD quality tiers, **to enable** cross-team reuse via AWS Artifact, **delivering** reusable infrastructure modules adopted across encoding services.
+
+**Stack:** Kotlin, FFmpeg, AWS Artifact
+
+---
+
+## Experience — TmaxWAPL · Software Engineer · 2021.08 – 2022.09
+
+### ✅ Video Conference Room Initialization (6× faster)
+> **Traced** 100-user video conference room join latency to chat and account initialization being coupled on the join path, **decoupled** those dependencies and **introduced** async task queues to move initialization off the critical path, **reducing per-user setup from 0.6s to 0.1s — a 6× user-facing latency improvement**.
+
+**Stack:** Node.js, Express, MongoDB, Redis
+
+### ✅ CMS Performance Optimization
+> **Refactored** Redis caching with TTL-based eviction and **introduced** Redis Pub/Sub for real-time notifications, **to address** cache inefficiency and notification scalability blocks under high concurrency, **lowering** server load and notification latency while modularizing chat / alarm / account services for future scaling.
+
+**Stack:** Java, Spring, Redis (Cache + Pub/Sub), MongoDB
 
 ## Education
 
