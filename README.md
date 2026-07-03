@@ -74,7 +74,7 @@ Mid-level (SDE II / SWE II) roles in:
 ### ✅ Distributed Encoding System on AWS EKS [📄 Read More](Distributed_transcoding)
 > **Designed and built** a containerized encoding pipeline on AWS EKS with GOP-aware video partitioning and Redis-based job control with auto-failover, **to replace** a Hybrik-based external SaaS that was cost-prohibitive and inelastic at scale, **cutting encoding cost 50% and lifting throughput 30%**.
 
-**Stack:** Kotlin, Spring Boot, AWS EKS, Docker, Redis, FFmpeg, AWS Artifact
+**Stack:** Kotlin, Spring Boot, AWS EKS, Docker, Redis, FFmpeg
 
 ### ✅ Legacy API Refactoring & Kotlin Migration
 > **Led migration** of entangled base64-Java handlers into modular Kotlin codebases under DDD boundaries with Kafka-based event streaming, **to unblock** API safety and testability blocks preventing onboarding and deploys, **improving** test coverage, deployment cadence, and team onboarding by isolating reusable domain logic.
@@ -82,9 +82,9 @@ Mid-level (SDE II / SWE II) roles in:
 **Stack:** Kotlin, Spring Boot, Kafka, DDD
 
 ### ✅ Transcoding & Packaging Module Enhancement
-> **Modularized** the encoding pipeline into media-info / error-handling / packaging submodules and added multi-aspect (16:9, 1:1, 9:16) + HD/FHD/UHD quality tiers, **to enable** cross-team reuse via AWS Artifact, **delivering** reusable infrastructure modules adopted across encoding services.
+> **Modularized** the encoding pipeline into media-info / error-handling / packaging submodules and added multi-aspect (16:9, 1:1, 9:16) + HD/FHD/UHD quality tiers, **to enable** cross-team reuse, **delivering** shared modules adopted across encoding services.
 
-**Stack:** Kotlin, FFmpeg, AWS Artifact
+**Stack:** Kotlin, FFmpeg
 
 ---
 
