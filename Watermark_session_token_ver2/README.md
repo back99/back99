@@ -39,8 +39,21 @@ we achieved the following:
 3. SQS message triggers Lambda
 4. Lambda stores issued token information into the RDB
 
-> Token issuance architecture:  
-![session1.png](session1.png)
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant R as Redis<br/>(pre-issued token queue)
+    participant Q as Amazon SQS
+    participant L as AWS Lambda
+    participant DB as RDB
+
+    C->>R: Token request via API
+    R-->>C: Pre-issued token returned immediately (no DB access)
+    C->>Q: Publish issued-token info
+    Q->>L: Trigger Lambda
+    L->>DB: Persist issued-token record (async)
+```
 
 ---
 
@@ -50,8 +63,20 @@ we achieved the following:
 2. SNS topic invokes a single Lambda function
 3. Lambda generates new tokens and stores them in Redis
 
-> Token generation architecture:  
-![session_2.png](session_2.png)
+```mermaid
+sequenceDiagram
+    autonumber
+    participant R as Redis
+    participant CW as CloudWatch
+    participant S as SNS Topic
+    participant L as AWS Lambda
+
+    CW->>CW: Alarm fires when Redis memory < 200MB
+    CW->>S: Publish to SNS topic
+    S->>L: Invoke a single Lambda function
+    L->>L: Generate new tokens (skew transform)
+    L->>R: Refill pre-issued token queue
+```
 
 ---
 

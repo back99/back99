@@ -29,8 +29,36 @@ while ensuring **scalability** and **system stability**.
 
 ## 4. System Architecture
 
-> The diagram below illustrates the overall architecture of the distributed transcoding system:  
-![architecture.png](architecture.png)
+> The diagram below illustrates the overall architecture of the distributed transcoding system:
+
+```mermaid
+flowchart TB
+    API["TNP-API"] -->|"transcoding request"| DIST
+    MSK["Amazon MSK (Kafka)"] -.->|"events"| DIST
+
+    subgraph REGION["AWS Region"]
+        subgraph EKS["EKS Cluster — Karpenter autoscaling"]
+            CP["Control Plane"]
+            subgraph NDIST["node-distribute"]
+                DIST["Distributor & Packager"]
+            end
+            subgraph NWORK["worker nodes"]
+                W["Transcoding Workers (EKS Jobs, FFmpeg)"]
+            end
+            subgraph NMON["monitoring node"]
+                REDIS[("Redis — job state / segment queue")]
+                ARGO["Argo Workflow"]
+                KOV["kube-ops-view"]
+            end
+        end
+        S3[("Customer S3")]
+    end
+
+    DIST -->|"GOP-aligned segments"| REDIS
+    REDIS -->|"BRPOP segment jobs"| W
+    W -->|"status updates"| REDIS
+    DIST -->|"merged final output"| S3
+```
 
 ---
 
