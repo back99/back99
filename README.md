@@ -35,14 +35,14 @@ The cost? 50% over-spending, 30% latency you can't fix with caching, and an LLM 
 ## 📩 What I'm Looking For
 
 Mid-level (SDE II / SWE II) roles in:
-- ☁️ Cloud / Distributed Systems Infrastructure (AWS, Datadog, Mastercard, Cloudflare)
-- 🤖 ML / AI Platform Engineering (CoreWeave, Anyscale, Modal Labs)
-- 🎬 Video / Streaming Infrastructure (AWS Elemental, Akamai, Twitch, Bitmovin)
-- 🏥 Healthcare AI (Cigna-Evernorth, Lumeris, Tempus, Hippocratic AI)
+- ☁️ Cloud / Distributed Systems Infrastructure
+- 🤖 ML / AI Platform Engineering
+- 🎬 Video / Streaming Infrastructure
+- 🏥 Healthcare AI
 
-📍 St. Louis, MO · Open to relocation (Seattle, Bay Area, NYC, Portland, Boston, Pittsburgh) · F-1 OPT + 3-year STEM extension eligible · Available **January 2027**
+📍 St. Louis, MO | Open to relocation (Seattle, Bay Area, NYC, Portland, Boston, Pittsburgh) | F-1 OPT + 3-year STEM extension eligible | Available **January 2027**
 
-→ DM open. Reach me via [LinkedIn](https://www.linkedin.com/in/seungbum-jung-6a105317a/) or email tofoth@gmail.com.
+→ Reach me via [LinkedIn](https://www.linkedin.com/in/seungbum-jung-6a105317a/) or email tofoth@gmail.com.
 
 ## Research
 
