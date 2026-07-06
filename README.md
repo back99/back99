@@ -40,7 +40,7 @@ Mid-level (SDE II / SWE II) roles in:
 - 🎬 Video / Streaming Infrastructure
 - 🏥 Healthcare AI
 
-📍 St. Louis, MO | Open to relocation (Seattle, Bay Area, NYC, Portland, Boston, Pittsburgh) | F-1 OPT + 3-year STEM extension eligible | Available **January 2027**
+📍 St. Louis, MO | Open to relocation anywhere in the U.S. | F-1 OPT + 3-year STEM extension eligible | Available **January 2027**
 
 → Reach me via [LinkedIn](https://www.linkedin.com/in/seungbum-jung-6a105317a/) or email tofoth@gmail.com.
 
