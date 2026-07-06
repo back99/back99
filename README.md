@@ -74,15 +74,15 @@ Mid-level (SDE II / SWE II) roles in:
 
 ## Experience
 
-**Doverunner (formerly Inka Entworks) — Software Engineer | 2023.04 – 2025.09**
-- Watermark token issuance redesign (Lambda + Redis + SNS): **30% peak-latency reduction, 5M+ race-free tokens** across Seoul, Oregon, Frankfurt [📄 Read More](Watermark_session_token_ver2)
-- Distributed encoding pipeline on AWS EKS replacing Hybrik SaaS: **50% cost cut, 30% throughput lift** [📄 Read More](Distributed_transcoding)
-- Legacy Java to Kotlin migration under DDD boundaries with Kafka event streaming; modularized transcoding / packaging services
+### ✅ Watermark Token Issuance Optimization [📄 Read More](Watermark_session_token_ver2)
+> **Redesigned** the legacy synchronous-RDB token service into a non-linear-index Lambda + Redis + SNS event-driven architecture, **to fix** peak-time latency spikes and regional index collisions blocking scale-out, **delivering 30% peak-latency reduction and 5M+ race-free tokens** across Seoul, Oregon, and Frankfurt.
 
-**Tmax (TmaxWAPL, TmaxOS Research Lab) — Software Engineer | 2021.08 – 2023.04**
-- 100-user video conference room initialization **6× faster** (0.6s to 0.1s per user) by moving chat / account setup off the join path with async task queues
-- CMS optimization: Redis Pub/Sub real-time notifications + TTL-based cache eviction under high concurrency
-- Kafka-based room lifecycle event server capturing **~80K session events** for observability and metric pipelines
+**Stack:** Kotlin, AWS Lambda, Redis, SNS, CloudWatch, RDS
+
+### ✅ Distributed Encoding System on AWS EKS [📄 Read More](Distributed_transcoding)
+> **Designed and built** a containerized encoding pipeline on AWS EKS with GOP-aware video partitioning and Redis-based job control with auto-failover, **to replace** a Hybrik-based external SaaS that was cost-prohibitive and inelastic at scale, **cutting encoding cost 50% and lifting throughput 30%**.
+
+**Stack:** Kotlin, Spring Boot, AWS EKS, Docker, Redis, FFmpeg
 
 ## Education
 
