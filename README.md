@@ -15,20 +15,22 @@ The cost? 50% over-spending, 30% latency you can't fix with caching, and an LLM 
 
 ## ✅ What I Bring
 
-I'm the engineer who lives in both worlds.
+**The rare engineer who bridges production AWS at scale, HPC-based ML/AI research, and regulated healthcare LLM deployment** — three intersecting depths that almost never coexist in one person.
 
-**Production AWS at scale (4 years at Doverunner):**
-- Redesigned a synchronous-RDB watermark token system into a **Lambda + Redis + SNS** architecture → **5M+ race-free tokens** across Seoul, Oregon, Frankfurt with **30% peak-latency reduction**
-- Replaced a Hybrik-based encoding SaaS with a self-hosted **AWS EKS** pipeline → **50% cost cut, 30% throughput lift**
-- Reduced 100-user video conference room initialization from 0.6s to 0.1s — a **6× user-facing latency improvement** at TmaxWAPL
+**🏥 Regulated Healthcare LLM (Summer 2026 → funded RA):**
+- HIPAA-compliant clinical LLM chatbot for MCI patient support at SLU HPC Lab
+- End-to-end ownership: iPad frontend + institutional backend + LLM API integration (OpenAI / Claude)
+- BAA-grounded data architecture (engagement metadata only, no raw audio/transcripts) feeding a future NIH R01 application
 
-**HPC + ML research at SLU HPC Lab (M.S. CS, Dec 2026):**
-- Federated Learning parallelization on SLURM + NVIDIA L40S with empirical Amdahl analysis
+**🔬 HPC + ML Research at SLU HPC Lab (M.S. CS, Dec 2026):**
+- Federated Learning parallelization on SLURM + NVIDIA L40S with empirical Amdahl analysis (1.27× stable speedup, 24% parallel fraction ceiling proven)
 - Gaussian Process Regression + LSTM pipeline for clinical force prediction with uncertainty estimation
 - Joining CARLA distributed simulation project, SC2026 workshop submission
 
-**Applied LLM (Summer 2026 →):**
-- Funded RA on a HIPAA-compliant clinical LLM chatbot for MCI patient support — iPad frontend, institutional backend, BAA-grounded data architecture
+**☁️ Production AWS at scale (4 years at Doverunner):**
+- Redesigned a synchronous-RDB watermark token system into a **Lambda + Redis + SNS** architecture → **5M+ race-free tokens** across Seoul, Oregon, Frankfurt with **30% peak-latency reduction**
+- Replaced a Hybrik-based encoding SaaS with a self-hosted **AWS EKS** pipeline → **50% cost cut, 30% throughput lift**
+- Reduced 100-user video conference room initialization from 0.6s to 0.1s — a **6× user-facing latency improvement** at TmaxWAPL
 
 ## 📩 What I'm Looking For
 
