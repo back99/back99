@@ -72,46 +72,17 @@ Mid-level (SDE II / SWE II) roles in:
 - **Complementary design**: GPR covers **spatial** extrapolation (thickness), LSTM covers **temporal** extrapolation (14-day window). Trained on **NVIDIA L40S** GPUs under **SLURM** on the SLU Libra HPC cluster  
   **Stack:** Python, PyTorch, GPyTorch, XGBoost, scikit-learn, pandas, numpy, SLURM
 
-## Experience — Doverunner (formerly Inka Entworks) · Software Engineer · 2023.04 – 2025.09
+## Experience
 
-### ✅ Watermark Token Issuance Optimization [📄 Read More](Watermark_session_token_ver2)
-> **Redesigned** the legacy synchronous-RDB token service into a non-linear-index Lambda + Redis + SNS event-driven architecture, **to fix** peak-time latency spikes and regional index collisions blocking scale-out, **delivering 30% peak-latency reduction and 5M+ race-free tokens** across Seoul, Oregon, and Frankfurt.
+**Doverunner (formerly Inka Entworks) — Software Engineer | 2023.04 – 2025.09**
+- Watermark token issuance redesign (Lambda + Redis + SNS): **30% peak-latency reduction, 5M+ race-free tokens** across Seoul, Oregon, Frankfurt [📄 Read More](Watermark_session_token_ver2)
+- Distributed encoding pipeline on AWS EKS replacing Hybrik SaaS: **50% cost cut, 30% throughput lift** [📄 Read More](Distributed_transcoding)
+- Legacy Java to Kotlin migration under DDD boundaries with Kafka event streaming; modularized transcoding / packaging services
 
-**Stack:** Kotlin, AWS Lambda, Redis, SNS, CloudWatch, RDS
-
-### ✅ Distributed Encoding System on AWS EKS [📄 Read More](Distributed_transcoding)
-> **Designed and built** a containerized encoding pipeline on AWS EKS with GOP-aware video partitioning and Redis-based job control with auto-failover, **to replace** a Hybrik-based external SaaS that was cost-prohibitive and inelastic at scale, **cutting encoding cost 50% and lifting throughput 30%**.
-
-**Stack:** Kotlin, Spring Boot, AWS EKS, Docker, Redis, FFmpeg
-
-### ✅ Legacy API Refactoring & Kotlin Migration
-> **Led migration** of entangled base64-Java handlers into modular Kotlin codebases under DDD boundaries with Kafka-based event streaming, **to unblock** API safety and testability blocks preventing onboarding and deploys, **improving** test coverage, deployment cadence, and team onboarding by isolating reusable domain logic.
-
-**Stack:** Kotlin, Spring Boot, Kafka, DDD
-
-### ✅ Transcoding & Packaging Module Enhancement
-> **Modularized** the encoding pipeline into media-info / error-handling / packaging submodules and added multi-aspect (16:9, 1:1, 9:16) + HD/FHD/UHD quality tiers, **to enable** cross-team reuse, **delivering** shared modules adopted across encoding services.
-
-**Stack:** Kotlin, FFmpeg
-
----
-
-## Experience — Tmax · Software Engineer / Research Lab · 2021.08 – 2023.04 (1 yr 9 mo, across TmaxWAPL and TmaxOS Research Lab)
-
-### ✅ Video Conference Room Initialization (6× faster)
-> **Traced** 100-user video conference room join latency to chat and account initialization being coupled on the join path, **decoupled** those dependencies and **introduced** async task queues to move initialization off the critical path, **reducing per-user setup from 0.6s to 0.1s — a 6× user-facing latency improvement**.
-
-**Stack:** Node.js, Express, MongoDB, Redis
-
-### ✅ CMS Performance Optimization
-> **Refactored** Redis caching with TTL-based eviction and **introduced** Redis Pub/Sub for real-time notifications, **to address** cache inefficiency and notification scalability blocks under high concurrency, **lowering** server load and notification latency while modularizing chat / alarm / account services for future scaling.
-
-**Stack:** Java, Spring, Redis (Cache + Pub/Sub), MongoDB
-
-### ✅ Kafka-Based Room Lifecycle Event Server
-> **Built** a Kafka-based backend capturing ~80K session lifecycle events end-to-end with a schema designed to support both ad-hoc debugging and downstream metric pipelines, **to address** the lack of room-level observability blocking debugging, analytics, and metric-driven feature work, **unblocking** debugging, analytics, and metric-based feature extensions that were previously impossible.
-
-**Stack:** Java, Kafka, Spring, MongoDB
+**Tmax (TmaxWAPL, TmaxOS Research Lab) — Software Engineer | 2021.08 – 2023.04**
+- 100-user video conference room initialization **6× faster** (0.6s to 0.1s per user) by moving chat / account setup off the join path with async task queues
+- CMS optimization: Redis Pub/Sub real-time notifications + TTL-based cache eviction under high concurrency
+- Kafka-based room lifecycle event server capturing **~80K session events** for observability and metric pipelines
 
 ## Education
 
