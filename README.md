@@ -18,7 +18,7 @@ The cost? 50% over-spending, 30% latency you can't fix with caching, and an LLM 
 **The rare engineer who bridges production AWS at scale, HPC-based ML/AI research, and regulated healthcare LLM deployment** — three intersecting depths that almost never coexist in one person.
 
 **🏥 Regulated Healthcare LLM (funded RA, Summer 2026 →):**
-- HIPAA-compliant clinical LLM chatbot for MCI patient support at SLU HPC Lab — **working prototype complete**: device pairing, onboarding, AI-initiated proactive conversation, coordinator dashboard, **204 Vitest tests**
+- HIPAA-oriented clinical LLM chatbot for MCI patient support at SLU HPC Lab — **working prototype deployed** (Docker + AWS ECR, TLS): device pairing, onboarding, AI-initiated proactive conversation, hands-free voice, coordinator dashboard, **690+ automated tests** — [Architecture Showcase](https://github.com/back99/mci-chatbot-showcase)
 - Server-side crisis detection (Code Blue escalation, 988 lockout) + prompt-level safety guardrails for a vulnerable population
 - BAA-grounded data architecture (engagement metadata only, no raw audio/transcripts) feeding a future NIH R01 application
 
@@ -46,12 +46,12 @@ Mid-level (SDE II / SWE II) roles in:
 
 ## Research
 
-### ✅ Clinical LLM Chatbot for MCI Patient Support — **Ongoing (funded RA, Summer 2026 →)**
-- Funded RA project at SLU HPC Lab (advisor: Prof. Ted Ahn) — an **iPad-based conversational AI** for patients with **Mild Cognitive Impairment (MCI)**, deployed in a **HIPAA-compliant** clinical setting as a feasibility pilot supporting a future **NIH R01** application. Code private (clinical constraints)
-- **Working prototype complete**: device pairing, patient onboarding, AI-initiated proactive conversation, coordinator dashboard with CSV export, de-identified UUID participant labels — covered by **204 Vitest tests**
-- **Safety enforced server-side**: crisis detection with Code Blue escalation and a 988-crisis lockout flow, plus prompt-level guardrails. Data architecture captures engagement metadata only — **no raw audio or full conversation transcripts**
-- **Voice interaction in design**: turn-based, server-relayed voice via AWS Transcribe / Polly — hybrid voice + screen for older-adult accessibility. Pilot: ~15 participants, 6 months, two variants (neutral vs proactive)  
-  **Stack:** OpenAI / Claude APIs, prompt engineering + safety guardrails, iPad (frontend), institutional backend (HIPAA), AWS Transcribe / Polly (voice, in design), Vitest
+### ✅ Clinical LLM Chatbot for MCI Patient Support — **Ongoing (funded RA, Summer 2026 →)** [📄 Architecture Showcase](https://github.com/back99/mci-chatbot-showcase)
+- Funded RA project at SLU HPC Lab (advisor: Prof. Ted Ahn) — an **iPad-based conversational AI** for patients with **Mild Cognitive Impairment (MCI)**, designed for a **HIPAA-compliant** clinical deployment as a feasibility pilot supporting a future **NIH R01** application. Code private (clinical constraints) — architecture, safety design, and voice pipeline documented in the public showcase repo
+- **Working prototype deployed end-to-end** (Docker Compose + AWS ECR behind TLS/nginx, CI/CD via GitHub Actions + SSM): React/TypeScript PWA kiosk, FastAPI backend, PostgreSQL with de-identified metadata only — covered by **690+ automated tests** (pytest + Vitest, E2E smoke in CI)
+- **Safety enforced server-side**: crisis detection with Code Blue escalation and a 988-crisis lockout flow **before any LLM call**, plus prompt-level guardrails. Data architecture captures engagement metadata only — **no raw audio or full conversation transcripts**
+- **Hands-free voice implemented**: turn-based, server-relayed via AWS Transcribe / Polly with latency engineering — per-sentence streaming TTS, speculative early STT, prompt caching. Pilot: ~15 participants, 6 months  
+  **Stack:** FastAPI, React + TypeScript, PostgreSQL, Claude API, prompt engineering + safety guardrails, AWS (Transcribe, Polly, ECR), Docker, pytest + Vitest
 
 ### ✅ Distributed Autonomous-Driving Data Collection on HPC (CARLA) — **Ongoing, with GIST AIGS**
 - Run CARLA simulation workloads across **2 nodes × 8 NVIDIA A100 GPUs**, scheduled with **SLURM** and containerized with **Singularity**, collecting data for the **LAV** and **InterFuser** autonomous-driving pipelines
@@ -87,5 +87,5 @@ Mid-level (SDE II / SWE II) roles in:
 ## Education
 
 - **M.S. in Computer Science (in progress)** — Saint Louis University, USA, Aug 2025 – Dec 2026 (expected)  
-  Advisor: Prof. Ted Ahn · Lab: High Performance Computing Lab · GPA: 3.63 / 4.0
+  Advisor: Prof. Ted Ahn | Lab: High Performance Computing Lab | GPA: 3.63 / 4.0
 - **B.S. in Computer Engineering** — Ajou University, South Korea, 2015–2018
