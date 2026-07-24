@@ -18,7 +18,7 @@ The cost? 50% over-spending, 30% latency you can't fix with caching, and an LLM 
 **The rare engineer who bridges production AWS at scale, HPC-based ML/AI research, and regulated healthcare LLM deployment** — three intersecting depths that almost never coexist in one person.
 
 **🏥 Regulated Healthcare LLM (funded RA, Summer 2026 →):**
-- HIPAA-oriented clinical LLM chatbot for MCI patient support at SLU HPC Lab — **working prototype deployed** (Docker + AWS ECR, TLS): device pairing, onboarding, AI-initiated proactive conversation, hands-free voice, coordinator dashboard, **690+ automated tests** — [Architecture Showcase](https://github.com/back99/mci-chatbot-showcase)
+- HIPAA-oriented clinical LLM chatbot for MCI patient support at SLU HPC Lab — **working prototype deployed** (Docker + AWS ECR, TLS): device pairing, onboarding, AI-initiated proactive conversation, hands-free voice, coordinator dashboard, **690+ automated tests** — [Read More](https://github.com/back99/mci-chatbot-showcase)
 - Server-side crisis detection (Code Blue escalation, 988 lockout) + prompt-level safety guardrails for a vulnerable population
 - BAA-grounded data architecture (engagement metadata only, no raw audio/transcripts) feeding a future NIH R01 application
 
@@ -46,7 +46,7 @@ Mid-level (SDE II / SWE II) roles in:
 
 ## Research
 
-### ✅ Clinical LLM Chatbot for MCI Patient Support — **Ongoing (funded RA, Summer 2026 →)** [📄 Architecture Showcase](https://github.com/back99/mci-chatbot-showcase)
+### ✅ Clinical LLM Chatbot for MCI Patient Support — **Ongoing (funded RA, Summer 2026 →)** [📄 Read More](https://github.com/back99/mci-chatbot-showcase)
 - Funded RA project at SLU HPC Lab (advisor: Prof. Ted Ahn) — an **iPad-based conversational AI** for patients with **Mild Cognitive Impairment (MCI)**, designed for a **HIPAA-compliant** clinical deployment as a feasibility pilot supporting a future **NIH R01** application. Code private (clinical constraints) — architecture, safety design, and voice pipeline documented in the public showcase repo
 - **Working prototype deployed end-to-end** (Docker Compose + AWS ECR behind TLS/nginx, CI/CD via GitHub Actions + SSM): React/TypeScript PWA kiosk, FastAPI backend, PostgreSQL with de-identified metadata only — covered by **690+ automated tests** (pytest + Vitest, E2E smoke in CI)
 - **Safety enforced server-side**: crisis detection with Code Blue escalation and a 988-crisis lockout flow **before any LLM call**, plus prompt-level guardrails. Data architecture captures engagement metadata only — **no raw audio or full conversation transcripts**
