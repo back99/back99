@@ -28,7 +28,7 @@ The cost? 50% over-spending, 30% latency you can't fix with caching, and an LLM 
 - HPC-CARLA: closed-loop evaluation of autonomous-driving agents on HPC with GIST (2 nodes × 8 A100, SLURM + Singularity) — contributed the watchdog + auto-resubmission job chain; co-authored paper submitted to an SC26 workshop
 
 **☁️ Production AWS at scale (4 years at Doverunner):**
-- Redesigned a synchronous-RDB watermark token system into a **Lambda + Redis + SNS** architecture → **5M+ race-free tokens** across Seoul, Oregon, Frankfurt with **30% peak-latency reduction**
+- Redesigned a synchronous-RDB watermark token system into a **Lambda + Redis + SNS** architecture → **5M+ tokens issued** across Seoul, Oregon, Frankfurt with a **30% latency reduction**
 - Replaced a Hybrik-based encoding SaaS with a self-hosted **AWS EKS** pipeline → **50% cost cut, 30% throughput lift**
 - Reduced 100-user video conference room initialization from 0.6s to 0.1s — a **6× user-facing latency improvement** at TmaxWAPL
 
@@ -75,12 +75,12 @@ Mid-level (SDE II / SWE II) roles in:
 ## Experience
 
 ### ✅ Watermark Token Issuance Optimization [📄 Read More](Watermark_session_token_ver2)
-> **Redesigned** the legacy synchronous-RDB token service into a non-linear-index Lambda + Redis + SNS event-driven architecture, **to fix** peak-time latency spikes and regional index collisions blocking scale-out, **delivering 30% peak-latency reduction and 5M+ race-free tokens** across Seoul, Oregon, and Frankfurt.
+> **Rebuilt** the synchronous-RDB token service on a non-linear-index Lambda + Redis + SNS architecture, **to fix** slow issuance under heavy traffic and cross-region index collisions blocking scale-out, **delivering a 30% latency reduction and 5M+ tokens issued** across Seoul, Oregon, and Frankfurt.
 
 **Stack:** Kotlin, AWS Lambda, Redis, SNS, CloudWatch, RDS
 
 ### ✅ Distributed Encoding System on AWS EKS [📄 Read More](Distributed_transcoding)
-> **Designed and built** a containerized encoding pipeline on AWS EKS with GOP-aware video partitioning and Redis-based job control with auto-failover, **to replace** a Hybrik-based external SaaS that was cost-prohibitive and inelastic at scale, **cutting encoding cost 50% and lifting throughput 30%**.
+> **Designed and built** a containerized encoding pipeline on AWS EKS with GOP-aware video partitioning, **to replace** a Hybrik-based external SaaS that was cost-prohibitive and inelastic at scale, **cutting encoding cost 50% and lifting throughput 30%**.
 
 **Stack:** Kotlin, Spring Boot, AWS EKS, Docker, Redis, FFmpeg
 
