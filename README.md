@@ -25,7 +25,7 @@ The cost? 50% over-spending, 30% latency you can't fix with caching, and an LLM 
 **🔬 HPC + ML Research at SLU HPC Lab (M.S. CS, Dec 2026):**
 - Federated Learning parallelization with empirical Amdahl analysis (1.27× stable speedup, ~24% parallel fraction ceiling proven); now extending to multi-node FL + FedAsync on the SLU Libra cluster
 - Gaussian Process Regression + LSTM pipeline for clinical force prediction with uncertainty estimation, on NVIDIA L40S under SLURM
-- HPC-CARLA: closed-loop evaluation of autonomous-driving agents on HPC with GIST (2 nodes × 8 A100, SLURM + Singularity) — contributed the watchdog + auto-resubmission job chain; co-authored paper submitted to an SC26 workshop
+- HPC-CARLA: closed-loop evaluation of autonomous-driving agents on HPC with GIST (2 nodes × 8 A100, SLURM + Singularity) — contributed the watchdog + auto-resubmission job chain; co-authored paper accepted at WORKS 2026 (SC26 workshop)
 
 **☁️ Production AWS at scale (4 years at Doverunner):**
 - Redesigned a synchronous-RDB watermark token system into a **Lambda + Redis + SNS** architecture → **5M+ tokens issued** across Seoul, Oregon, Frankfurt with a **30% latency reduction**
@@ -53,7 +53,7 @@ Mid-level (SDE II / SWE II) roles in:
 - **Hands-free voice implemented**: turn-based, server-relayed via AWS Transcribe / Polly with latency engineering — per-sentence streaming TTS, speculative early STT, prompt caching. Pilot: ~15 participants, 6 months  
   **Stack:** FastAPI, React + TypeScript, PostgreSQL, Claude API, prompt engineering + safety guardrails, AWS (Transcribe, Polly, ECR), Docker, pytest + Vitest
 
-### ✅ HPC-CARLA: Closed-Loop Evaluation of Autonomous-Driving Agents on HPC — **Paper submitted to an SC26 workshop, with GIST AIGS** [📄 Read More](https://github.com/back99/HPC-CARLA)
+### ✅ HPC-CARLA: Closed-Loop Evaluation of Autonomous-Driving Agents on HPC — **Paper accepted at WORKS 2026 (SC26 workshop), with GIST AIGS** [📄 Read More](https://github.com/back99/HPC-CARLA)
 - Co-authored (2nd author) a system that runs **closed-loop CARLA evaluation** of six public agents (TCP, InterFuser, CILRS, NEAT, Roach, LAV) as declarative YAML pipelines over one stage library, across **2 nodes × 8 NVIDIA A100 GPUs** with **SLURM** and **Singularity/Apptainer**
 - Contributed the **watchdog + automatic-resubmission job chain** so long-running evaluation jobs survive crashes and allocation expiry without manual intervention
 - System results: persistent per-GPU CARLA servers reuse the ~120s boot across jobs; episode-granular accounting recovered **94% of 13,059 route evaluations** from jobs that job-level accounting would have discarded  
