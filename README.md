@@ -87,5 +87,5 @@ Mid-level (SDE II / SWE II) roles in:
 ## Education
 
 - **M.S. in Computer Science (in progress)** — Saint Louis University, USA, Aug 2025 – Dec 2026 (expected)  
-  Advisor: Prof. Ted Ahn | Lab: High Performance Computing Lab | GPA: 3.63 / 4.0
+  Advisor: Prof. Ted Ahn | Lab: High Performance Computing Lab | GPA: 3.67 / 4.0
 - **B.S. in Computer Engineering** — Ajou University, South Korea, 2015–2018
