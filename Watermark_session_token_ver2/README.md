@@ -6,8 +6,9 @@ This project was designed to resolve bottlenecks in token issuance that occurred
 By improving the synchronous RDB-based architecture and applying a serverless design with a non-linear index-based algorithm,  
 we achieved the following:
 
-- **30% peak-latency reduction** in token issuance
-- **5M+ race-free tokens** issued across three regions (Seoul, Oregon, Frankfurt)
+- **30% latency reduction** in token issuance
+- **5M+ tokens issued** across Seoul and Oregon, later extended to Frankfurt
+- Designed and built solo, replacing the existing synchronous RDB-based issuance
 - 100% duplication-free token generation without DB uniqueness checks
 - High scalability
 

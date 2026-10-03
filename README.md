@@ -27,9 +27,9 @@ The cost? 50% over-spending, 30% latency you can't fix with caching, and an LLM 
 - Gaussian Process Regression + LSTM pipeline for clinical force prediction with uncertainty estimation, on NVIDIA L40S under SLURM
 - HPC-CARLA: closed-loop evaluation of autonomous-driving agents on HPC with GIST (2 nodes × 8 A100, SLURM + Singularity) — contributed the watchdog + auto-resubmission job chain; co-authored paper accepted at WORKS 2026 (SC26 workshop)
 
-**☁️ Production AWS at scale (4 years at Doverunner):**
-- Redesigned a synchronous-RDB watermark token system into a **Lambda + Redis + SNS** architecture → **5M+ tokens issued** across Seoul, Oregon, Frankfurt with a **30% latency reduction**
-- Replaced a Hybrik-based encoding SaaS with a self-hosted **AWS EKS** pipeline → **50% cost cut, 30% throughput lift**
+**☁️ Production AWS at scale (DoveRunner, 2023–2025):**
+- Redesigned (solo) a synchronous-RDB watermark token system into a **Lambda + Redis + SQS/SNS** architecture → **5M+ tokens issued** across Seoul and Oregon, later Frankfurt, with a **30% latency reduction**
+- Co-built (3-person team) a self-hosted **AWS EKS** transcoding pipeline replacing a Hybrik-based SaaS → **50% cost cut, 30% throughput lift**; owned GOP-aware segmentation, transcoding workers, and segment merge
 - Reduced 100-user video conference room initialization from 0.6s to 0.1s — a **6× user-facing latency improvement** at TmaxWAPL
 
 ## 📩 What I'm Looking For
@@ -75,12 +75,12 @@ Mid-level (SDE II / SWE II) roles in:
 ## Experience
 
 ### ✅ Watermark Token Issuance Optimization [📄 Read More](Watermark_session_token_ver2)
-> **Rebuilt** the synchronous-RDB token service on a non-linear-index Lambda + Redis + SNS architecture, **to fix** slow issuance under heavy traffic and cross-region index collisions blocking scale-out, **delivering a 30% latency reduction and 5M+ tokens issued** across Seoul, Oregon, and Frankfurt.
+> **Redesigned and built (solo)** the synchronous-RDB token service on a non-linear-index Lambda + Redis + SQS/SNS architecture, **to fix** slow issuance under heavy traffic and cross-region index collisions blocking scale-out, **delivering a 30% latency reduction and 5M+ tokens issued** across Seoul and Oregon, later extended to Frankfurt.
 
-**Stack:** Kotlin, AWS Lambda, Redis, SNS, CloudWatch, RDS
+**Stack:** Kotlin, AWS Lambda, Redis, SQS, SNS, CloudWatch, RDS
 
 ### ✅ Distributed Encoding System on AWS EKS [📄 Read More](Distributed_transcoding)
-> **Designed and built** a containerized encoding pipeline on AWS EKS with GOP-aware video partitioning, **to replace** a Hybrik-based external SaaS that was cost-prohibitive and inelastic at scale, **cutting encoding cost 50% and lifting throughput 30%**.
+> **Co-built (3-person team)** a containerized encoding pipeline on AWS EKS, owning GOP-aware video partitioning, transcoding workers, and segment merge, **to replace** a Hybrik-based external SaaS that was cost-prohibitive and inelastic at scale, **cutting encoding cost 50% and lifting throughput 30%**.
 
 **Stack:** Kotlin, Spring Boot, AWS EKS, Docker, Redis, FFmpeg
 

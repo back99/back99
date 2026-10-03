@@ -8,6 +8,8 @@ then merging the transcoded pieces into a final result, the system replaced a
 Hybrik-based external SaaS — **cutting encoding cost 50% and lifting throughput 30%**,  
 while ensuring **scalability** and **system stability**.
 
+**My role (3-person team):** GOP-aware segmentation (distributor), the transcoding workers (the flow in section 5), and merging transcoded segments. Redis job-state management was shared across the team. DASH/HLS packaging was owned by a teammate.
+
 ---
 
 ## 2. Problem
@@ -75,7 +77,7 @@ flowchart TB
 - **GOP-Aware Segmentation**: Segments cut on GOP boundaries so each piece transcodes independently without re-encoding artifacts at seams
 - **Efficient Resource Utilization**: Maximize compute usage with segmented parallel processing
 - **Scalability**: Number of jobs dynamically scales with video length and load
-- **State Management**: Real-time tracking of each segment's status using Redis, with auto-failover job control
+- **State Management**: Real-time tracking of each segment's status using Redis
 
 ---
 
