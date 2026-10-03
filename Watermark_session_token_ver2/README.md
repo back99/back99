@@ -8,7 +8,7 @@ we achieved the following:
 
 - **30% latency reduction** in token issuance
 - **5M+ tokens issued** across Seoul and Oregon, later extended to Frankfurt
-- Designed and built solo, replacing the existing synchronous RDB-based issuance
+- Designed and built to replace the existing synchronous RDB-based issuance
 - 100% duplication-free token generation without DB uniqueness checks
 - High scalability
 

@@ -8,7 +8,7 @@ then merging the transcoded pieces into a final result, the system replaced a
 Hybrik-based external SaaS — **cutting encoding cost 50% and lifting throughput 30%**,  
 while ensuring **scalability** and **system stability**.
 
-**My role (3-person team):** GOP-aware segmentation (distributor), the transcoding workers (the flow in section 5), and merging transcoded segments. Redis job-state management was shared across the team. DASH/HLS packaging was owned by a teammate.
+**My role:** GOP-aware segmentation (distributor), the transcoding workers (the flow in section 5), and merging transcoded segments.
 
 ---
 
