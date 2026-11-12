@@ -72,6 +72,15 @@ Mid-level (SDE II / SWE II) roles in:
 - **Complementary design**: GPR covers **spatial** extrapolation (thickness), LSTM covers **temporal** extrapolation (14-day window). Trained on **NVIDIA L40S** GPUs under **SLURM** on the SLU Libra HPC cluster  
   **Stack:** Python, PyTorch, GPyTorch, XGBoost, scikit-learn, pandas, numpy, SLURM
 
+## Side Projects
+
+### ✅ Crypto Lead-Lag Strategy Validation [📄 Read More](https://github.com/back99/coin-leadlag-validation)
+- Tested the day-trading idea "altcoins follow BTC/ETH with a delay" against real market data **before building any trading bot**: Upbit 5-minute bars (90 days), Binance 1-second bars (2 days), and Upbit/Bithumb order books via public REST APIs
+- Every test used a **random-entry control group, in-sample/out-of-sample split, and per-coin measured round-trip cost**; each tool was first checked on synthetic data with a planted signal
+- **All 9 strategies rejected**: altcoins follow BTC almost instantly (correlation ~0.01 one minute later), so the signal (~+0.1%) never beats the round-trip cost (0.115% to 1.022%); trend following went from +27.7% in-sample to -31.0% out-of-sample
+- Built with an AI assistant (Claude): I set the hypotheses, ran the scripts, and caught flaws in the AI's analysis (fixed-time exits recording a +1.10% win as -0.20%, and ignoring per-pair beta); the AI wrote the code. No real trading  
+  **Stack:** Python, pandas, NumPy, Upbit / Binance / Bithumb APIs
+
 ## Experience
 
 ### ✅ Watermark Token Issuance Optimization [📄 Read More](Watermark_session_token_ver2)
