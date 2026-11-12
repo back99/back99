@@ -18,9 +18,9 @@ The cost? 50% over-spending, 30% latency you can't fix with caching, and an LLM 
 **The rare engineer who bridges production AWS at scale, HPC-based ML/AI research, and regulated healthcare LLM deployment** — three intersecting depths that almost never coexist in one person.
 
 **🏥 Regulated Healthcare LLM (funded RA, Summer 2026 →):**
-- HIPAA-oriented clinical LLM chatbot for MCI patient support at SLU HPC Lab — **working prototype deployed** on AWS EC2 (dev/prod, Docker Compose, TLS): device pairing, onboarding, AI-initiated proactive conversation, hands-free voice, coordinator dashboard; **1,193 backend test functions + 806 frontend tests**; built by directing a Claude Code agent team (189 commits, ~5 months) — [Read More](https://github.com/back99/mci-chatbot-showcase)
-- Server-side crisis detection (Code Blue escalation, 988 lockout) + prompt-level safety guardrails for a vulnerable population
-- BAA-grounded data architecture (engagement metadata only, no raw audio/transcripts) feeding a future NIH R01 application
+- Clinical LLM companion for older adults with MCI at SLU HPC Lab (research prototype, pilot after IRB approval) — [Read More](https://github.com/back99/mci-chatbot-showcase)
+- **LLM design:** safety handled outside the model (rule-based crisis check before every LLM call; the AI second pass can only raise risk), prompts assembled from reviewable config files, prompt caching, post-session LLM metadata extraction
+- **AI-driven development:** built with a Claude Code multi-agent team (lead, server, frontend, mobile, AI, QA); I owned requirements, task design, PR review and merge, and AWS operations
 
 **🔬 HPC + ML Research at SLU HPC Lab (M.S. CS, Dec 2026):**
 - Federated Learning parallelization with empirical Amdahl analysis (1.27× stable speedup, ~24% parallel fraction ceiling proven); now extending to multi-node FL + FedAsync on the SLU Libra cluster
@@ -46,12 +46,15 @@ Mid-level (SDE II / SWE II) roles in:
 
 ## Research
 
-### ✅ Clinical LLM Chatbot for MCI Patient Support — **Ongoing (funded RA, Summer 2026 →)** [📄 Read More](https://github.com/back99/mci-chatbot-showcase)
-- Funded RA project at SLU HPC Lab (advisor: Prof. Ted Ahn) — an **iPad-based conversational AI** for patients with **Mild Cognitive Impairment (MCI)**, designed for a **HIPAA-compliant** clinical deployment as a feasibility pilot supporting a future **NIH R01** application. Code private (clinical constraints) — architecture, safety design, and voice pipeline documented in the public showcase repo
-- **Working prototype deployed end-to-end** on AWS EC2 dev/prod (Docker Compose, nginx + TLS, ECR, CI/CD via GitHub Actions OIDC + SSM): React/TypeScript PWA kiosk, FastAPI backend, PostgreSQL with de-identified metadata only — covered by **1,193 backend test functions (pytest) and 806 frontend tests (Vitest)**. Development led by directing a Claude Code multi-agent team (requirements, task design, PR review, AWS operations)
-- **Safety enforced server-side**: crisis detection with Code Blue escalation and a 988-crisis lockout flow **before any LLM call**, plus prompt-level guardrails. Data architecture captures engagement metadata only — **no raw audio or full conversation transcripts**
-- **Hands-free voice implemented**: turn-based, server-relayed via AWS Transcribe / Polly with latency engineering — per-sentence streaming TTS, speculative early STT, prompt caching (working in the web kiosk on dev). Participant pilot planned after IRB approval  
-  **Stack:** FastAPI, React + TypeScript, PostgreSQL, Claude API, prompt engineering + safety guardrails, AWS (Transcribe, Polly, ECR), Docker, pytest + Vitest
+### ✅ Clinical LLM Chatbot for MCI Patient Support — **Research prototype (funded RA, Summer 2026 →)** [📄 Read More](https://github.com/back99/mci-chatbot-showcase)
+- iPad-based voice conversation companion for older adults with **Mild Cognitive Impairment (MCI)**, built at SLU HPC Lab as groundwork for a clinical feasibility pilot supporting a future **NIH R01** application. Pilot planned after IRB approval; code private (clinical constraints)
+- **How the LLM is used (design):**
+  - **Safety outside the model:** every message passes a rule-based crisis check before any LLM call; a crisis signal stops the conversation and starts a lock → safety question → 911/988 → staff alert flow that only a person can clear. A context filter cuts false positives, and the AI second pass can only raise the risk level
+  - **Prompts as config:** persona, always-on safety rules, participant context, a topic bank, and a 5-minute wrap-up instruction are separate files assembled per request, so the PI can review and edit them without code changes. Prompt caching on the fixed system prompt; LLM usage and cost visible in the staff dashboard
+  - **LLM after the session:** the model extracts topics and clinical-domain flags as research metadata; raw transcripts and audio are not stored in the database
+  - **Voice latency:** AWS Transcribe + Polly with per-sentence TTS and speculative early STT, about 1.3–1.6 s to first audio on dev; chose the Polly engine with ~1.0 s vs 2.7–2.9 s
+- **How it was built (AI-driven development):** a Claude Code multi-agent team (lead, server, frontend, mobile, AI, QA) working task → branch → PR → QA → merge. Safety logic, session limits, and interface changes require my approval; I owned requirements with the PI, PR review and merge, and AWS infrastructure (EC2, Docker Compose, GitHub Actions)  
+  **Stack:** FastAPI, React + TypeScript, PostgreSQL, Claude API, AWS (Transcribe, Polly, EC2), Docker, GitHub Actions
 
 ### ✅ HPC-CARLA: Closed-Loop Evaluation of Autonomous-Driving Agents on HPC — **Paper accepted at WORKS 2026 (SC26 workshop), with GIST AIGS** [📄 Read More](https://github.com/back99/HPC-CARLA)
 - Co-authored (2nd author) a system that runs **closed-loop CARLA evaluation** of six public agents (TCP, InterFuser, CILRS, NEAT, Roach, LAV) as declarative YAML pipelines over one stage library, across **2 nodes × 8 NVIDIA A100 GPUs** with **SLURM** and **Singularity/Apptainer**
