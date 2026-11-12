@@ -19,8 +19,8 @@ The cost? 50% over-spending, 30% latency you can't fix with caching, and an LLM 
 
 **🏥 Regulated Healthcare LLM (funded RA, Summer 2026 →):**
 - Clinical LLM companion for older adults with MCI at SLU HPC Lab (research prototype, pilot after IRB approval) — [Read More](https://github.com/back99/mci-chatbot-showcase)
-- **LLM design:** safety handled outside the model (rule-based crisis check before every LLM call; the AI second pass can only raise risk), prompts assembled from reviewable config files, prompt caching, post-session LLM metadata extraction
-- **AI-driven development:** built with a Claude Code multi-agent team (lead, server, frontend, mobile, AI, QA); I owned requirements, task design, PR review and merge, and AWS operations
+- **LLM design:** safety handled outside the model (rule-based crisis check before every LLM call; the AI second pass can only raise risk), prompts assembled from config files the PI can edit, post-session LLM metadata extraction
+- **AI-driven development:** ran a Claude Code multi-agent team with explicit rules, context docs, and CI gates — 184 PRs and ~43k lines across backend, web, and mobile in 5 months; verified agent output myself (e.g., found a crisis sentence both safety layers missed by running real-model scenarios)
 
 **🔬 HPC + ML Research at SLU HPC Lab (M.S. CS, Dec 2026):**
 - Federated Learning parallelization with empirical Amdahl analysis (1.27× stable speedup, ~24% parallel fraction ceiling proven); now extending to multi-node FL + FedAsync on the SLU Libra cluster
@@ -50,11 +50,15 @@ Mid-level (SDE II / SWE II) roles in:
 - iPad-based voice conversation companion for older adults with **Mild Cognitive Impairment (MCI)**, built at SLU HPC Lab as groundwork for a clinical feasibility pilot supporting a future **NIH R01** application. Pilot planned after IRB approval; code private (clinical constraints)
 - **How the LLM is used (design):**
   - **Safety outside the model:** every message passes a rule-based crisis check before any LLM call; a crisis signal stops the conversation and starts a lock → safety question → 911/988 → staff alert flow that only a person can clear. A context filter cuts false positives, and the AI second pass can only raise the risk level
-  - **Prompts as config:** persona, always-on safety rules, participant context, a topic bank, and a 5-minute wrap-up instruction are separate files assembled per request, so the PI can review and edit them without code changes. Prompt caching on the fixed system prompt; LLM usage and cost visible in the staff dashboard
-  - **LLM after the session:** the model extracts topics and clinical-domain flags as research metadata; raw transcripts and audio are not stored in the database
-  - **Voice latency:** AWS Transcribe + Polly with per-sentence TTS and speculative early STT, about 1.3–1.6 s to first audio on dev; chose the Polly engine with ~1.0 s vs 2.7–2.9 s
-- **How it was built (AI-driven development):** a Claude Code multi-agent team (lead, server, frontend, mobile, AI, QA) working task → branch → PR → QA → merge. Safety logic, session limits, and interface changes require my approval; I owned requirements with the PI, PR review and merge, and AWS infrastructure (EC2, Docker Compose, GitHub Actions)  
-  **Stack:** FastAPI, React + TypeScript, PostgreSQL, Claude API, AWS (Transcribe, Polly, EC2), Docker, GitHub Actions
+  - **Prompts as config:** persona, always-on safety rules, participant context, a topic bank (5 domains, 14 categories), and a 5-minute wrap-up instruction are separate files assembled per request, so the PI can review and edit them without code changes
+  - **LLM after the session:** the model extracts topics and clinical-domain flags as research metadata; transcripts and audio are not stored in the database, and token usage is logged per call for the staff dashboard
+  - **Voice latency and cost:** AWS Transcribe + Polly with per-sentence TTS and speculative early STT, about 1.3–1.6 s to first audio on dev; Polly engine chosen on latency (~1.0 s vs 2.7–2.9 s) and cost ($16 vs $30–100 per 1M characters)
+- **How it was built (AI-driven development):** a Claude Code multi-agent team (lead, server, frontend, mobile, AI, QA) — **184 PRs, 178 tasks, ~43k lines across backend, web, and mobile in 5 months**
+  - **Context design:** each instruction is self-contained (background, files and scope, what not to touch, how to verify, PR steps); architecture, DB, and API docs are kept as agent context, and a task is not done until the docs are updated
+  - **Team rules:** folder ownership per role; no test means not done; verify on a running server, not only unit tests; QA re-runs instead of trusting "done"; safety and session-limit changes merge only after my review
+  - **Automated gates:** CI for backend, web, and mobile on every PR; dev deploys only after green CI; prod only from tags already verified on dev; isolated test environment
+  - **Verifying the agents:** ran the PI's 15 crisis scenarios against the real model and found a sentence both the rules and the AI pass missed → added a pattern and a regression scenario; checked a "mobile voice works" report and found zero STT calls → split into a device test; rolled back a breaking deploy instead of patching prod, then diagnosed on a branch and reintroduced it  
+  **Stack:** FastAPI, React + TypeScript, React Native, PostgreSQL, Claude API, Claude Code, AWS (Transcribe, Polly, EC2), Docker, GitHub Actions
 
 ### ✅ HPC-CARLA: Closed-Loop Evaluation of Autonomous-Driving Agents on HPC — **Paper accepted at WORKS 2026 (SC26 workshop), with GIST AIGS** [📄 Read More](https://github.com/back99/HPC-CARLA)
 - Co-authored (2nd author) a system that runs **closed-loop CARLA evaluation** of six public agents (TCP, InterFuser, CILRS, NEAT, Roach, LAV) as declarative YAML pipelines over one stage library, across **2 nodes × 8 NVIDIA A100 GPUs** with **SLURM** and **Singularity/Apptainer**
@@ -78,11 +82,11 @@ Mid-level (SDE II / SWE II) roles in:
 ## Side Projects
 
 ### ✅ Crypto Lead-Lag Strategy Validation [📄 Read More](https://github.com/back99/coin-leadlag-validation)
-- Tested the day-trading idea "altcoins follow BTC/ETH with a delay" against real market data **before building any trading bot**: Upbit 5-minute bars (90 days), Binance 1-second bars (2 days), and Upbit/Bithumb order books via public REST APIs
-- Every test used a **random-entry control group, in-sample/out-of-sample split, and per-coin measured round-trip cost**; each tool was first checked on synthetic data with a planted signal
-- **All 9 strategies rejected**: altcoins follow BTC almost instantly (correlation ~0.01 one minute later), so the signal (~+0.1%) never beats the round-trip cost (0.115% to 1.022%); trend following went from +27.7% in-sample to -31.0% out-of-sample
-- Built with an AI assistant (Claude): I set the hypotheses, ran the scripts, and caught flaws in the AI's analysis (fixed-time exits recording a +1.10% win as -0.20%, and ignoring per-pair beta); the AI wrote the code. No real trading  
-  **Stack:** Python, pandas, NumPy, Upbit / Binance / Bithumb APIs
+- Tested the day-trading idea "altcoins follow BTC/ETH with a delay" against real market data **before building any trading bot**. Claude wrote the code; I set the hypotheses, ran the data collection (exchange APIs were reachable only from my machine), checked the results, and made the calls
+- **Speed:** 9 strategies and ~20 variants in two days; a new hypothesis took 20–40 minutes, a variant 5–15 minutes. Every test used a random-entry control, an in-sample/out-of-sample split, and per-coin measured round-trip cost; each tool was first checked on synthetic data
+- **Pushing back on the AI changed the results:** questioned fixed-time exits → a 4-way exit engine exposed that fixed exits recorded a +1.10% win as -0.20%; questioned the 1:1 BTC-follow assumption → per-pair beta removed fake signals (fewer than 30 left); asked for the missing pure trend-following test → worse than holding (-5.2% vs -2.5%); out-of-sample check turned +27.7% into -31.0%. Rejected AI proposals that did not fit (kimchi-premium retest, futures funding, long order-book collection)
+- **Result:** all 9 strategies rejected — the signal (~+0.1%) never beats the round-trip cost (0.115% to 1.022%). No real trading  
+  **Stack:** Python, pandas, NumPy, Upbit / Binance / Bithumb APIs, Claude
 
 ## Experience
 
