@@ -83,7 +83,7 @@ Mid-level (SDE II / SWE II) roles in:
 
 ### ✅ Crypto Lead-Lag Strategy Validation [📄 Read More](https://github.com/back99/coin-leadlag-validation)
 - Tested the day-trading idea "altcoins follow BTC/ETH with a delay" against real market data **before building any trading bot**. Claude wrote the code; I set the hypotheses, ran the data collection (exchange APIs were reachable only from my machine), checked the results, and made the calls
-- **Speed:** 9 strategies and ~20 variants in two days; a new hypothesis took 20–40 minutes, a variant 5–15 minutes. Every test used a random-entry control, an in-sample/out-of-sample split, and per-coin measured round-trip cost; each tool was first checked on synthetic data
+- **Scope:** 9 strategies and ~20 variants. Every test used a random-entry control, an in-sample/out-of-sample split, and per-coin measured round-trip cost; each tool was first checked on synthetic data
 - **Pushing back on the AI changed the results:** questioned fixed-time exits → a 4-way exit engine exposed that fixed exits recorded a +1.10% win as -0.20%; questioned the 1:1 BTC-follow assumption → per-pair beta removed fake signals (fewer than 30 left); asked for the missing pure trend-following test → worse than holding (-5.2% vs -2.5%); out-of-sample check turned +27.7% into -31.0%. Rejected AI proposals that did not fit (kimchi-premium retest, futures funding, long order-book collection)
 - **Result:** all 9 strategies rejected — the signal (~+0.1%) never beats the round-trip cost (0.115% to 1.022%). No real trading  
   **Stack:** Python, pandas, NumPy, Upbit / Binance / Bithumb APIs, Claude
